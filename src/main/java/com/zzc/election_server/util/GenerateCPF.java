@@ -24,14 +24,18 @@ public class GenerateCPF {
 //                "tb_grade",
 //                "gradeId",
 //                "Grade", "com.zzc.election_server.model",
+//
+                "tb_activity",
+                "activityId",
+                "Activity", "com.zzc.election_server.model",
 
-//                "tb_activity",
-//                "activityId",
-//                "Activity", "com.zzc.election_server.model",
+//                "activity_user",
+//                "userId",
+//                "ActivityUser", "com.zzc.election_server.model",
 
-                "activity_user",
-                "userId",
-                "ActivityUser", "com.zzc.election_server.model",
+//                "activity_user_select",
+//                "activityUserSelectId",
+//                "ActivityUserSelect", "com.zzc.election_server.model",
                 "D:/JavaProject/election_server/src/main/java/com\\zzc\\election_server\\model/");
 
 
