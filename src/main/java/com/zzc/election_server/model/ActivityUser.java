@@ -6,7 +6,7 @@ import javax.persistence.Table;
 import java.math.BigDecimal;
 import javax.persistence.*;
 @Table(schema = "`count_votes`", name = "activity_user")
-public class User {
+public class ActivityUser {
 	@Id
 	@Column(name = "user_id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
