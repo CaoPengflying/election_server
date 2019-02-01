@@ -36,8 +36,8 @@ public class GenerateCPF {
 //                "activity_user_select",
 //                "activityUserSelectId",
 //                "ActivityUserSelect", "com.zzc.election_server.model",
-                "D:/JavaProject/election_server/src/main/java/com\\zzc\\election_server\\model/");
-
+                //"D:/JavaProject/election_server/src/main/java/com\\zzc\\election_server\\model/"
+                 "E:\\election\\src\\main\\java\\com\\zzc\\election_server\\model/");
 
 
     }
