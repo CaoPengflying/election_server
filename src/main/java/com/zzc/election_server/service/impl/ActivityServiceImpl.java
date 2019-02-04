@@ -157,7 +157,7 @@ public class ActivityServiceImpl implements ActivityService {
         try {
             Example example = new Example(Activity.class);
             example.createCriteria()
-                    .andEqualTo("joinGrade",extActivity.getJoinGarde())
+                    .andEqualTo("joinGrade",extActivity.getJoinGrade())
                     .andGreaterThanOrEqualTo("startTime",new Date())
                     .andLessThanOrEqualTo("endTime",new Date());
             activities = activityMapper.selectByExample(example);

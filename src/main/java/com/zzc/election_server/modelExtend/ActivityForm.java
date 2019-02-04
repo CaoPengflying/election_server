@@ -36,6 +36,8 @@ public class ActivityForm {
         if (null == this.getExtActivity()){
 
             errorMsg.append("[活动不能为空]");
+        }else {
+            this.getExtActivity().checkForCreate();
         }
         if (CollectionUtils.isEmpty(this.getExtActivityUserList())){
             errorMsg.append("[参选人员不能为空]");

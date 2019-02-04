@@ -60,7 +60,7 @@ public class ActivityUserServiceImpl implements ActivityUserService {
             Activity activity = activityMapper.selectByPrimaryKey(activityUser.getActivityId());
             Example example = new Example(ActivityUserSelect.class);
             example.createCriteria().andEqualTo("userId", extUser.getUserId())
-                    .andEqualTo("studentId", extUser.getStudentId());
+                    .andEqualTo("studentId", extUser.getStudentBId());
             List<ActivityUserSelect> activityUserSelects = activityUserSelectMapper.selectByExample(example);
             example.createCriteria().andEqualTo("studentId",extUser.getStudentId()).andEqualTo("activityId",
                     activity.getActivityId());
