@@ -19,6 +19,23 @@ import javax.annotation.Resource;
 public class StudentController {
     @Resource
     private StudentService studentService;
+
+    /**
+     * 登录
+     * @param jsonObject
+     * @return
+     */
+    @RequestMapping("/login")
+    public Result login(String jsonObject){
+        ExtStudent extStudent = JSONObject.parseObject(jsonObject, ExtStudent.class);
+        return studentService.create(extStudent);
+    }
+
+    /**
+     * 增加学生
+     * @param jsonObject
+     * @return
+     */
     @RequestMapping("/create")
     public Result create(String jsonObject){
         ExtStudent extStudent = JSONObject.parseObject(jsonObject, ExtStudent.class);

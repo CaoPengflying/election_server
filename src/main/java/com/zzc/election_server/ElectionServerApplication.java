@@ -12,15 +12,13 @@ import org.springframework.scheduling.annotation.EnableAsync;
 @ComponentScan({ "com.zzc"})
 @EnableCaching
 @EnableAsync
-public class ElectionServerApplication extends SpringBootServletInitializer {
+public class ElectionServerApplication  {
+
 
     public static void main(String[] args) {
         SpringApplication.run(ElectionServerApplication.class, args);
     }
 
-    @Override
-    protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
-        return builder.sources(this.getClass());
-    }
+
 }
 

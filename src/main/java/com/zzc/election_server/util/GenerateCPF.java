@@ -14,7 +14,7 @@ public class GenerateCPF {
     private static Boolean importDate = false;
 
 
-    public static void main(String[] args) throws Exception {
+    /*public static void main(String[] args) throws Exception {
 
         generateEntity("112.74.49.77", "3306", "count_votes", "root", "123456",
 //                "tb_student",
@@ -40,7 +40,7 @@ public class GenerateCPF {
 
 
 
-    }
+    }*/
 
     public static void generateEntity(String host, String port, String database, String username, String password,
                                       String tableName, String keyId,  String entityName, String basePackage, String
