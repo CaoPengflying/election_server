@@ -17,8 +17,8 @@ public class ExtActivity extends Activity {
 
     public Result checkForGetJoinActivities() {
         StringBuffer errorMsg = new StringBuffer();
-        if (null == this.getJoinGarde()){
-            errorMsg.append("[参与的班级不能为空]");
+        if (null == this.getJoinGrade()){
+            errorMsg.append("参与的班级不能为空");
         }
         if (StringUtils.isNotEmpty(errorMsg)){
             return ErrorConstant.getErrorResult(ErrorConstant.PARAM_IS_NULL, errorMsg.toString());
@@ -57,5 +57,23 @@ public class ExtActivity extends Activity {
 
     public void setLeftVotes(Integer leftVotes) {
         this.leftVotes = leftVotes;
+    }
+
+    public Result checkForCreate() {
+        StringBuffer errorMsg = new StringBuffer();
+        if (null == this.getStartTime()){
+            errorMsg.append("起始时间不能为空");
+        }
+        if (null == this.getEndTime()){
+            errorMsg.append("终止时间不能为空");
+        }
+        if (StringUtils.isNotEmpty(errorMsg)){
+            return ErrorConstant.getErrorResult(ErrorConstant.PARAM_IS_NULL, errorMsg.toString());
+        }else {
+            if (this.getEndTime().compareTo(this.getStartTime()) < 0){
+                return ErrorConstant.getErrorResult(ErrorConstant.PARAM_IS_NULL, "终止时间需大于起始时间");
+            }
+        }
+        return ErrorConstant.getSuccessResult("");
     }
 }

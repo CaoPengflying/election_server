@@ -14,7 +14,8 @@ public class ExtActivityUser extends ActivityUser {
     private Integer limit;
     private Integer offset;
     private Boolean selectFlag;
-    private Integer studentId;
+    //此为投票人的Id
+    private Integer studentBId;
 
     public Integer getLimit() {
         return limit;
@@ -32,14 +33,12 @@ public class ExtActivityUser extends ActivityUser {
         this.offset = offset;
     }
 
-    @Override
-    public Integer getStudentId() {
-        return studentId;
+    public Integer getStudentBId() {
+        return studentBId;
     }
 
-    @Override
-    public void setStudentId(Integer studentId) {
-        this.studentId = studentId;
+    public void setStudentBId(Integer studentBId) {
+        this.studentBId = studentBId;
     }
 
     public Boolean getSelectFlag() {

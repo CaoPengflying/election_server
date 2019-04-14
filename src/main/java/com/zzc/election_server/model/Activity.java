@@ -26,11 +26,11 @@ public class Activity {
 	@Column(name = "describe")
 	private String describe;//
 
-	@Column(name = "crreate_user")
-	private Integer crreateUser;//
+	@Column(name = "create_user")
+	private Integer createUser;//
 
-	@Column(name = "join_garde")
-	private Integer joinGarde;//
+	@Column(name = "join_grade")
+	private Integer joinGrade;//
 
 	@Column(name = "num")
 	private Integer num;//获奖人数
@@ -78,17 +78,17 @@ public class Activity {
 	public String getDescribe() {
 		return describe;
 	}
-	public void setCrreateUser(Integer crreateUser) {
-		this.crreateUser = crreateUser;
+	public void setCreateUser(Integer createUser) {
+		this.createUser = createUser;
 	}
-	public Integer getCrreateUser() {
-		return crreateUser;
+	public Integer getCreateUser() {
+		return createUser;
 	}
-	public void setJoinGarde(Integer joinGarde) {
-		this.joinGarde = joinGarde;
+	public void setJoinGrade(Integer joinGrade) {
+		this.joinGrade = joinGrade;
 	}
-	public Integer getJoinGarde() {
-		return joinGarde;
+	public Integer getJoinGrade() {
+		return joinGrade;
 	}
 	public void setNum(Integer num) {
 		this.num = num;
