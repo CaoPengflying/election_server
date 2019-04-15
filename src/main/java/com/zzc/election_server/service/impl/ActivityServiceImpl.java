@@ -112,15 +112,20 @@ public class ActivityServiceImpl implements ActivityService {
             Example example = new Example(Activity.class);
             Example.Criteria criteria = example.createCriteria();
             activities = activityMapper.selectByExample(example);
-            PageInfo<Activity> pageInfo = new PageInfo<>(activities);
-            map.put("list", activities);
-            map.put("count",pageInfo.getTotal());
+            if (null != extActivity.getOffset() && null != extActivity.getLimit()){
+                PageInfo<Activity> pageInfo = new PageInfo<>(activities);
+                map.put("count",pageInfo.getTotal());
+                map.put("list", activities);
+                result.setT(map);
+                result.setText("获取活动列表成功");
+                return result;
+            }else {
+                return ErrorConstant.getSuccessResult(activities, "获取活动列表成功");
+            }
+
         } catch (Exception e) {
-            return ErrorConstant.getErrorException(e, "获取学生异常，请联系管理员！");
+            return ErrorConstant.getErrorException(e, "获取学生列表异常，请联系管理员！");
         }
-        result.setT(map);
-        result.setText("获取学生成功");
-        return result;
     }
 
     @Override

@@ -5,24 +5,24 @@ import javax.persistence.Column;
 import javax.persistence.Table;
 import java.math.BigDecimal;
 import javax.persistence.*;
-@Table(schema = "`count_votes`", name = "activity_user")
+@Table(schema = "`count_votes`", name = "tb_activity_user")
 public class ActivityUser {
 	@Id
 	@Column(name = "user_id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer userId;//
+	private Integer userId;//主键
 
 	@Column(name = "student_id")
-	private Integer studentId;//
+	private Integer studentId;//参选人
 
 	@Column(name = "vote")
-	private Integer vote;//
+	private Integer vote;//得到的票数
 
 	@Column(name = "status")
-	private Integer status;//
+	private Integer status;//是否当选
 
 	@Column(name = "activity_id")
-	private Integer activityId;//
+	private Integer activityId;//活动
 
 	@Column(name = "ef01")
 	private String ef01;//

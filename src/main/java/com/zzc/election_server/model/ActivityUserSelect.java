@@ -5,7 +5,7 @@ import javax.persistence.Column;
 import javax.persistence.Table;
 import java.math.BigDecimal;
 import javax.persistence.*;
-@Table(schema = "`count_votes`", name = "activity_user_select")
+@Table(schema = "`count_votes`", name = "tb_activity_user_select")
 public class ActivityUserSelect {
 	@Id
 	@Column(name = "activity_user_select_id")
@@ -13,7 +13,7 @@ public class ActivityUserSelect {
 	private Integer activityUserSelectId;//
 
 	@Column(name = "user_id")
-	private Integer userId;//参选人
+	private Integer userId;//待选举人
 
 	@Column(name = "student_id")
 	private Integer studentId;//投票人

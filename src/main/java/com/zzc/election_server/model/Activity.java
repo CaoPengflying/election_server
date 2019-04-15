@@ -23,20 +23,20 @@ public class Activity {
 	@Column(name = "end_time")
 	private Date endTime;//
 
-	@Column(name = "describe")
-	private String describe;//
+	@Column(name = "activity_describe")
+	private String activityDescribe;//活动描述
 
 	@Column(name = "create_user")
-	private Integer createUser;//
+	private Integer createUser;//活动创建人
 
 	@Column(name = "join_grade")
-	private Integer joinGrade;//
+	private Integer joinGrade;//参与班级
 
 	@Column(name = "num")
 	private Integer num;//获奖人数
 
 	@Column(name = "votes")
-	private Integer votes;//每个学生拥有的票数
+	private Integer votes;//学生拥有的票数
 
 	@Column(name = "ef01")
 	private String ef01;//
@@ -72,11 +72,11 @@ public class Activity {
 	public Date getEndTime() {
 		return endTime;
 	}
-	public void setDescribe(String describe) {
-		this.describe = describe;
+	public void setActivityDescribe(String activityDescribe) {
+		this.activityDescribe = activityDescribe;
 	}
-	public String getDescribe() {
-		return describe;
+	public String getActivityDescribe() {
+		return activityDescribe;
 	}
 	public void setCreateUser(Integer createUser) {
 		this.createUser = createUser;

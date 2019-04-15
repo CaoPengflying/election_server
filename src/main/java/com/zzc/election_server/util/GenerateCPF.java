@@ -14,9 +14,9 @@ public class GenerateCPF {
     private static Boolean importDate = false;
 
 
-    /*public static void main(String[] args) throws Exception {
+    public static void main(String[] args) throws Exception {
 
-        generateEntity("112.74.49.77", "3306", "count_votes", "root", "123456",
+        generateEntity("127.0.0.1", "3306", "count_votes", "root", "root",
 //                "tb_student",
 //                "studentId",
 //                "Student", "com.zzc.election_server.model",
@@ -29,18 +29,18 @@ public class GenerateCPF {
                 "activityId",
                 "Activity", "com.zzc.election_server.model",
 
-//                "activity_user",
+//                "tb_activity_user",
 //                "userId",
 //                "ActivityUser", "com.zzc.election_server.model",
 
-//                "activity_user_select",
+//                "tb_activity_user_select",
 //                "activityUserSelectId",
 //                "ActivityUserSelect", "com.zzc.election_server.model",
-                //"D:/JavaProject/election_server/src/main/java/com\\zzc\\election_server\\model/"
-                 "E:\\election\\src\\main\\java\\com\\zzc\\election_server\\model/");
+                "D:/JavaProject/election_server/src/main/java/com\\zzc\\election_server\\model/");
+//                 "E:\\election\\src\\main\\java\\com\\zzc\\election_server\\model/");
 
 
-    }*/
+    }
 
     public static void generateEntity(String host, String port, String database, String username, String password,
                                       String tableName, String keyId,  String entityName, String basePackage, String
