@@ -16,7 +16,7 @@ import javax.annotation.Resource;
  * @time 2019/1/30 13:38
  */
 @RestController
-@RequestMapping(value = "/grade", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+@RequestMapping(value = "grade", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 public class GradeController {
     @Resource
     private GradeService gradeService;
@@ -26,17 +26,17 @@ public class GradeController {
         ExtGrade extGrade = JSONObject.parseObject(jsonObject, ExtGrade.class);
         return gradeService.create(extGrade);
     }
-    @RequestMapping("/delete")
+    @RequestMapping("delete")
     public Result delete(String jsonObject){
         ExtGrade extGrade = JSONObject.parseObject(jsonObject, ExtGrade.class);
         return gradeService.delete(extGrade);
     }
-    @RequestMapping("/update")
+    @RequestMapping("update")
     public Result update(String jsonObject){
         ExtGrade extGrade = JSONObject.parseObject(jsonObject, ExtGrade.class);
         return gradeService.update(extGrade);
     }
-    @RequestMapping("/list")
+    @RequestMapping("list")
     public Result list(String jsonObject){
         ExtGrade extGrade = JSONObject.parseObject(jsonObject, ExtGrade.class);
         return gradeService.list(extGrade);

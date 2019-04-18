@@ -17,17 +17,17 @@ public class GenerateCPF {
     public static void main(String[] args) throws Exception {
 
         generateEntity("127.0.0.1", "3306", "count_votes", "root", "root",
-//                "tb_student",
-//                "studentId",
-//                "Student", "com.zzc.election_server.model",
+                "tb_student",
+                "studentId",
+                "Student", "com.zzc.election_server.model",
 
 //                "tb_grade",
 //                "gradeId",
 //                "Grade", "com.zzc.election_server.model",
 //
-                "tb_activity",
-                "activityId",
-                "Activity", "com.zzc.election_server.model",
+//                "tb_activity",
+//                "activityId",
+//                "Activity", "com.zzc.election_server.model",
 
 //                "tb_activity_user",
 //                "userId",

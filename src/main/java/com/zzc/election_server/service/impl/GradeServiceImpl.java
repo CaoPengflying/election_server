@@ -74,14 +74,20 @@ public class GradeServiceImpl implements GradeService {
                 criteria.andEqualTo("gradeId",extGrade.getGradeId());
             }
             grades = gradeMapper.selectByExample(example);
-            PageInfo<Grade> pageInfo = new PageInfo<>(grades);
-            map.put("list", grades);
-            map.put("count",pageInfo.getTotal());
+            if (null != extGrade.getOffset() && null != extGrade.getLimit()){
+                PageInfo<Grade> pageInfo = new PageInfo<>(grades);
+                map.put("list", grades);
+                map.put("count",pageInfo.getTotal());
+                result.setT(map);
+                result.setText("获取班级列表成功");
+            }else {
+                return ErrorConstant.getSuccessResult(grades, "获取班级列表成功");
+            }
+
+
         } catch (Exception e) {
             return ErrorConstant.getErrorException(e, "获取学生异常，请联系管理员！");
         }
-        result.setT(map);
-        result.setText("获取学生成功");
         return result;
     }
 }

@@ -5,8 +5,8 @@ import com.zzc.election_server.common.Result;
 import com.zzc.election_server.modelExtend.ExtStudent;
 import com.zzc.election_server.service.StudentService;
 import org.springframework.http.MediaType;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
 
@@ -14,8 +14,8 @@ import javax.annotation.Resource;
  * @author caopengflying
  * @time 2019/1/23 16:52
  */
-@Controller
-@RequestMapping(value = "/student", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+@RestController
+@RequestMapping(value = "student", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 public class StudentController {
     @Resource
     private StudentService studentService;
@@ -25,7 +25,7 @@ public class StudentController {
      * @param jsonObject
      * @return
      */
-    @RequestMapping("/login")
+    @RequestMapping("login")
     public Result login(String jsonObject){
         ExtStudent extStudent = JSONObject.parseObject(jsonObject, ExtStudent.class);
         return studentService.create(extStudent);
@@ -36,27 +36,27 @@ public class StudentController {
      * @param jsonObject
      * @return
      */
-    @RequestMapping("/create")
+    @RequestMapping("create")
     public Result create(String jsonObject){
         ExtStudent extStudent = JSONObject.parseObject(jsonObject, ExtStudent.class);
         return studentService.create(extStudent);
     }
-    @RequestMapping("/delete")
+    @RequestMapping("delete")
     public Result delete(String jsonObject){
         ExtStudent extStudent = JSONObject.parseObject(jsonObject, ExtStudent.class);
         return studentService.delete(extStudent);
     }
-    @RequestMapping("/update")
+    @RequestMapping("update")
     public Result update(String jsonObject){
         ExtStudent extStudent = JSONObject.parseObject(jsonObject, ExtStudent.class);
         return studentService.update(extStudent);
     }
-    @RequestMapping("/list")
+    @RequestMapping("list")
     public Result list(String jsonObject){
         ExtStudent extStudent = JSONObject.parseObject(jsonObject, ExtStudent.class);
         return studentService.list(extStudent);
     }
-    @RequestMapping("/importStudent")
+    @RequestMapping("importStudent")
     public Result importStudent(String jsonObject){
         ExtStudent extStudent = JSONObject.parseObject(jsonObject, ExtStudent.class);
         return studentService.importStudent(extStudent);

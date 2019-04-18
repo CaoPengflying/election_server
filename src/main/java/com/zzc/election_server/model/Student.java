@@ -22,10 +22,10 @@ public class Student {
 	private String studentPassword;//
 
 	@Column(name = "sex")
-	private Boolean sex;//
+	private String sex;//
 
-	@Column(name = "id_cord")
-	private String idCord;//身份证号
+	@Column(name = "id_card")
+	private String idCard;//身份证号
 
 	@Column(name = "head_url")
 	private String headUrl;//
@@ -70,17 +70,17 @@ public class Student {
 	public String getStudentPassword() {
 		return studentPassword;
 	}
-	public void setSex(Boolean sex) {
+	public void setSex(String sex) {
 		this.sex = sex;
 	}
-	public Boolean getSex() {
+	public String getSex() {
 		return sex;
 	}
-	public void setIdCord(String idCord) {
-		this.idCord = idCord;
+	public void setIdCard(String idCard) {
+		this.idCard = idCard;
 	}
-	public String getIdCord() {
-		return idCord;
+	public String getIdCard() {
+		return idCard;
 	}
 	public void setHeadUrl(String headUrl) {
 		this.headUrl = headUrl;

@@ -9,6 +9,15 @@ import com.zzc.election_server.model.Student;
 public class ExtStudent extends Student {
     private Integer offset;
     private Integer limit;
+    private String gradeName;
+
+    public String getGradeName() {
+        return gradeName;
+    }
+
+    public void setGradeName(String gradeName) {
+        this.gradeName = gradeName;
+    }
 
     public Integer getOffset() {
         return offset;

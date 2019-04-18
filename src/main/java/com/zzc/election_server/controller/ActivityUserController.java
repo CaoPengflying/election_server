@@ -15,18 +15,18 @@ import javax.annotation.Resource;
  * @time 2019/1/23 17:05
  */
 @RestController
-@RequestMapping(value = "/user", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+@RequestMapping(value = "user", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 public class ActivityUserController {
     @Resource
     private ActivityUserService activityUserService;
 
-    @RequestMapping("/get")
+    @RequestMapping("get")
     public Result get(String jsonObject){
         ExtActivityUser extUser = JSON.parseObject(jsonObject, ExtActivityUser.class);
         Result result = activityUserService.get(extUser);
         return result;
     }
-    @RequestMapping("/update")
+    @RequestMapping("update")
     public Result update(String jsonObject){
         ExtActivityUser extUser = JSON.parseObject(jsonObject, ExtActivityUser.class);
         Result result = activityUserService.update(extUser);
