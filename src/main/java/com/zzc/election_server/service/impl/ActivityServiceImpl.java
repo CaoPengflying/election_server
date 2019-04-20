@@ -39,6 +39,15 @@ public class ActivityServiceImpl implements ActivityService {
     private ActivityUserMapper activityUserMapper;
     @Resource
     private ActivityUserSelectMapper activityUserSelectMapper;
+
+    /**
+     * 1.通过activityId查询活动
+     * 2.若活动存在 查询当前活动参选人
+     * 3.通过参选人查找相应的投票者
+     * 4.判断当前登陆用户是否在投票者中
+     * @param extActivity
+     * @return
+     */
     @Override
     public Result get(ExtActivity extActivity) {
         ActivityForm activityForm = new ActivityForm();
@@ -46,20 +55,22 @@ public class ActivityServiceImpl implements ActivityService {
             if (null == extActivity.getActivityId()){
                 return ErrorConstant.getErrorResult(ErrorConstant.PARAM_IS_NULL, "活动编号不能为空");
             }
+            //1
             Activity activity = activityMapper.selectByPrimaryKey(extActivity.getActivityId());
             if (null == activity){
                 return ErrorConstant.getErrorResult(ErrorConstant.DATA_NOT_EXISTS, "该活动不存在");
             }
+            activityForm.setExtActivity(ModelTransformUtils.exchangeClass(activity, ExtActivity.class));
+            //第二步
             Example example = new Example(ActivityUser.class);
             example.createCriteria().andEqualTo("activityId", activity.getActivityId());
             List<ActivityUser> activityUsers = activityUserMapper.selectByExample(example);
-            activityForm.setExtActivity(ModelTransformUtils.exchangeClass(activity, ExtActivity.class));
             List<ExtActivityUser> extActivityUsers = ModelTransformUtils.exchangeClassList(activityUsers, ExtActivityUser.class);
             extActivityUsers.forEach(extActivityUser -> {
                 Example e = new Example(ActivityUserSelect.class);
                 e.createCriteria()
                         .andEqualTo("userId",extActivityUser.getUserId())
-                        .andEqualTo("studentId", extActivityUser.getStudentId());
+                        .andEqualTo("studentId", extActivity.getStudentId());
                 List<ActivityUserSelect> activityUserSelects = activityUserSelectMapper.selectByExample(e);
                 if (!CollectionUtils.isEmpty(activityUserSelects)){
                     extActivityUser.setSelectFlag(true);

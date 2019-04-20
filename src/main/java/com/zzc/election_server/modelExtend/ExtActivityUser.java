@@ -3,6 +3,7 @@ package com.zzc.election_server.modelExtend;
 import com.zzc.election_server.common.ErrorConstant;
 import com.zzc.election_server.common.Result;
 import com.zzc.election_server.model.ActivityUser;
+import com.zzc.election_server.model.ActivityUserSelect;
 import org.apache.commons.lang3.StringUtils;
 
 /**
@@ -14,8 +15,7 @@ public class ExtActivityUser extends ActivityUser {
     private Integer limit;
     private Integer offset;
     private Boolean selectFlag;
-    //此为投票人的Id
-    private Integer studentBId;
+
 
     public Integer getLimit() {
         return limit;
@@ -33,13 +33,7 @@ public class ExtActivityUser extends ActivityUser {
         this.offset = offset;
     }
 
-    public Integer getStudentBId() {
-        return studentBId;
-    }
 
-    public void setStudentBId(Integer studentBId) {
-        this.studentBId = studentBId;
-    }
 
     public Boolean getSelectFlag() {
         return selectFlag;
