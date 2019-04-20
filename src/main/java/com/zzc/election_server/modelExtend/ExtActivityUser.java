@@ -3,7 +3,6 @@ package com.zzc.election_server.modelExtend;
 import com.zzc.election_server.common.ErrorConstant;
 import com.zzc.election_server.common.Result;
 import com.zzc.election_server.model.ActivityUser;
-import com.zzc.election_server.model.ActivityUserSelect;
 import org.apache.commons.lang3.StringUtils;
 
 /**
@@ -15,7 +14,15 @@ public class ExtActivityUser extends ActivityUser {
     private Integer limit;
     private Integer offset;
     private Boolean selectFlag;
+    private String studentName;
 
+    public String getStudentName() {
+        return studentName;
+    }
+
+    public void setStudentName(String studentName) {
+        this.studentName = studentName;
+    }
 
     public Integer getLimit() {
         return limit;
@@ -55,7 +62,7 @@ public class ExtActivityUser extends ActivityUser {
             errorMsg.append("[票数不能为空]");
         }
         if (StringUtils.isNotEmpty(errorMsg)){
-            return ErrorConstant.getErrorResult(ErrorConstant.PARAM_IS_NULL, "数据不能为空");
+            return ErrorConstant.getErrorResult(ErrorConstant.PARAM_IS_NULL, errorMsg.toString());
         }
         return ErrorConstant.getSuccessResult("");
     }

@@ -17,9 +17,9 @@ public class GenerateCPF {
     public static void main(String[] args) throws Exception {
 
         generateEntity("127.0.0.1", "3306", "count_votes", "root", "root",
-                "tb_student",
-                "studentId",
-                "Student", "com.zzc.election_server.model",
+//                "tb_student",
+//                "studentId",
+//                "Student", "com.zzc.election_server.model",
 
 //                "tb_grade",
 //                "gradeId",
@@ -33,9 +33,9 @@ public class GenerateCPF {
 //                "userId",
 //                "ActivityUser", "com.zzc.election_server.model",
 
-//                "tb_activity_user_select",
-//                "activityUserSelectId",
-//                "ActivityUserSelect", "com.zzc.election_server.model",
+                "tb_activity_user_select",
+                "activityUserSelectId",
+                "ActivityUserSelect", "com.zzc.election_server.model",
                 "D:/JavaProject/election_server/src/main/java/com\\zzc\\election_server\\model/");
 //                 "E:\\election\\src\\main\\java\\com\\zzc\\election_server\\model/");
 

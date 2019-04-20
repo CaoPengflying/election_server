@@ -5,13 +5,8 @@ import com.github.pagehelper.PageInfo;
 import com.google.common.collect.Maps;
 import com.zzc.election_server.common.ErrorConstant;
 import com.zzc.election_server.common.Result;
-import com.zzc.election_server.mapper.ActivityMapper;
-import com.zzc.election_server.mapper.ActivityUserMapper;
-import com.zzc.election_server.mapper.ActivityUserSelectMapper;
-import com.zzc.election_server.model.Activity;
-import com.zzc.election_server.model.ActivityUser;
-import com.zzc.election_server.model.ActivityUserSelect;
-import com.zzc.election_server.model.Grade;
+import com.zzc.election_server.mapper.*;
+import com.zzc.election_server.model.*;
 import com.zzc.election_server.modelExtend.ActivityForm;
 import com.zzc.election_server.modelExtend.ExtActivity;
 import com.zzc.election_server.modelExtend.ExtActivityUser;
@@ -26,6 +21,7 @@ import javax.annotation.Resource;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 /**
  * @author caopengflying
@@ -39,6 +35,10 @@ public class ActivityServiceImpl implements ActivityService {
     private ActivityUserMapper activityUserMapper;
     @Resource
     private ActivityUserSelectMapper activityUserSelectMapper;
+    @Resource
+    private StudentMapper studentMapper;
+    @Resource
+    private GradeMapper gradeMapper;
 
     /**
      * 1.通过activityId查询活动
@@ -60,13 +60,26 @@ public class ActivityServiceImpl implements ActivityService {
             if (null == activity){
                 return ErrorConstant.getErrorResult(ErrorConstant.DATA_NOT_EXISTS, "该活动不存在");
             }
-            activityForm.setExtActivity(ModelTransformUtils.exchangeClass(activity, ExtActivity.class));
+            ExtActivity extActivitySelect = ModelTransformUtils.exchangeClass(activity, ExtActivity.class);
+            //查询活动创建人姓名
+            Student student = studentMapper.selectByPrimaryKey(extActivitySelect.getCreateUser());
+            extActivitySelect.setCreateUserName(student.getStudentName());
+            //查询创建班级名称
+            Grade grade = gradeMapper.selectByPrimaryKey(extActivitySelect.getJoinGrade());
+            extActivitySelect.setCreateGradeName(grade.getGradeName());
+            activityForm.setExtActivity(extActivitySelect);
             //第二步
             Example example = new Example(ActivityUser.class);
             example.createCriteria().andEqualTo("activityId", activity.getActivityId());
             List<ActivityUser> activityUsers = activityUserMapper.selectByExample(example);
             List<ExtActivityUser> extActivityUsers = ModelTransformUtils.exchangeClassList(activityUsers, ExtActivityUser.class);
+            example = new Example(Student.class);
+            example.createCriteria().andIn("studentId",
+                    extActivityUsers.stream().map(ExtActivityUser::getStudentId).collect(Collectors.toList()));
+            List<Student> students = studentMapper.selectByExample(example);
+            Map<Integer, String> collect = students.stream().collect(Collectors.toMap(Student::getStudentId, Student::getStudentName));
             extActivityUsers.forEach(extActivityUser -> {
+                extActivityUser.setStudentName(collect.get(extActivityUser.getStudentId()));
                 Example e = new Example(ActivityUserSelect.class);
                 e.createCriteria()
                         .andEqualTo("userId",extActivityUser.getUserId())

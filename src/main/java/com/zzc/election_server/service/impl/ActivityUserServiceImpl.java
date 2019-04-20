@@ -19,8 +19,10 @@ import org.springframework.util.CollectionUtils;
 import tk.mybatis.mapper.entity.Example;
 
 import javax.annotation.Resource;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 /**
  * @author caopengflying
@@ -58,12 +60,17 @@ public class ActivityUserServiceImpl implements ActivityUserService {
                 return ErrorConstant.getErrorResult(ErrorConstant.FAIL, "该活动人员不存在");
             }
             Activity activity = activityMapper.selectByPrimaryKey(activityUser.getActivityId());
+            if (activity == null || activity.getEndTime().compareTo(new Date()) < 0){
+                return ErrorConstant.getErrorResult(ErrorConstant.FAIL, "活动已过期");
+            }
+            ActivityUser activityUserParam = new ActivityUser();
+            activityUserParam.setActivityId(activity.getActivityId());
+            List<ActivityUser> activityUserListSelect = activityUserMapper.select(activityUserParam);
             Example example = new Example(ActivityUserSelect.class);
             example.createCriteria().andEqualTo("userId", extUser.getUserId())
                     .andEqualTo("studentId", extUser.getStudentId());
             List<ActivityUserSelect> activityUserSelects = activityUserSelectMapper.selectByExample(example);
-            example.createCriteria().andEqualTo("studentId",extUser.getStudentId()).andEqualTo("activityId",
-                    activity.getActivityId());
+            example.createCriteria().andIn("userId", activityUserListSelect.stream().map(ActivityUser::getUserId).collect(Collectors.toList()));
             List<ActivityUserSelect> activityUserSelectsSize = activityUserSelectMapper.selectByExample(example);
             if (CollectionUtils.isEmpty(activityUserSelects) && activityUserSelectsSize.size() < activity.getVotes()) {
                 activityUserMapper.updateByPrimaryKeySelective(extUser);
