@@ -42,4 +42,9 @@ public interface StudentService {
      * @return
      */
     Result importStudent(ExtStudent extStudent);
+
+    /**
+     * 登录
+     */
+    Result login(ExtStudent extStudent);
 }

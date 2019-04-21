@@ -9,11 +9,13 @@ import com.zzc.election_server.mapper.GradeMapper;
 import com.zzc.election_server.mapper.StudentMapper;
 import com.zzc.election_server.model.Grade;
 import com.zzc.election_server.model.Student;
+import com.zzc.election_server.modelExtend.ExtActivity;
 import com.zzc.election_server.modelExtend.ExtStudent;
 import com.zzc.election_server.service.StudentService;
 import com.zzc.election_server.util.ModelTransformUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
+import org.springframework.util.StringUtils;
 import tk.mybatis.mapper.entity.Example;
 
 import javax.annotation.Resource;
@@ -118,5 +120,28 @@ public class StudentServiceImpl implements StudentService {
     @Override
     public Result importStudent(ExtStudent extStudent) {
         return null;
+    }
+
+    @Override
+    public Result login(ExtStudent extStudent) {
+        if (StringUtils.isEmpty(extStudent.getStudentNo())){
+            return ErrorConstant.getErrorResult(ErrorConstant.PARAM_IS_NULL, "学生号不能为空");
+        }
+        if (StringUtils.isEmpty(extStudent.getStudentPassword())){
+            return ErrorConstant.getErrorResult(ErrorConstant.PARAM_IS_NULL, "密码不能为空");
+        }
+        Student studentParam = new Student();
+        studentParam.setStudentNo(extStudent.getStudentNo());
+        Student student = studentMapper.selectOne(studentParam);
+        if (null == student){
+            return ErrorConstant.getErrorResult(ErrorConstant.DATA_NOT_EXISTS, "该账号不存在");
+        }
+        if (!extStudent.getStudentPassword().equals(student.getStudentPassword())){
+            return ErrorConstant.getErrorResult(ErrorConstant.FAIL, "密码错误");
+        }
+        Grade grade = gradeMapper.selectByPrimaryKey(student.getGradeId());
+        ExtStudent extStudentSelect = ModelTransformUtils.exchangeClass(student, ExtStudent.class);
+        extStudentSelect.setGradeName(grade.getGradeName());
+        return ErrorConstant.getSuccessResult(extStudentSelect,"登录成功");
     }
 }

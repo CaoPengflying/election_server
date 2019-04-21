@@ -28,7 +28,7 @@ public class StudentController {
     @RequestMapping("login")
     public Result login(String jsonObject){
         ExtStudent extStudent = JSONObject.parseObject(jsonObject, ExtStudent.class);
-        return studentService.create(extStudent);
+        return studentService.login(extStudent);
     }
 
     /**
