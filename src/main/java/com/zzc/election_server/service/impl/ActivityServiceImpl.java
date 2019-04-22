@@ -135,6 +135,9 @@ public class ActivityServiceImpl implements ActivityService {
             }
             Example example = new Example(Activity.class);
             Example.Criteria criteria = example.createCriteria();
+            if (extActivity.getJoinGrade() != null){
+                criteria.andEqualTo("joinGrade",extActivity.getJoinGrade());
+            }
             activities = activityMapper.selectByExample(example);
             if (null != extActivity.getOffset() && null != extActivity.getLimit()){
                 PageInfo<Activity> pageInfo = new PageInfo<>(activities);
