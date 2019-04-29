@@ -15,6 +15,7 @@ public class HelloController {
     @RequestMapping(value = "hello")
     public Result hello(){
         System.out.println("hello ");
+        System.out.println("master update");
         return ErrorConstant.getSuccessResult("");
     }
 }
