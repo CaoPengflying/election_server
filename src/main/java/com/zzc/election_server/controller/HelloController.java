@@ -16,6 +16,6 @@ public class HelloController {
     public Result hello(){
         System.out.println("hello ");
         System.out.println("dev  update again");
-        return ErrorConstant.getSuccessResult("");
+        return ErrorConstant.getSuccessResult("hello docker");
     }
 }
