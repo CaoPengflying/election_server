@@ -13,6 +13,7 @@ import com.zzc.election_server.modelExtend.ExtActivityUser;
 import com.zzc.election_server.service.ActivityService;
 import com.zzc.election_server.util.ModelTransformUtils;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.interceptor.TransactionAspectSupport;
 import org.springframework.util.CollectionUtils;
 import tk.mybatis.mapper.entity.Example;
@@ -99,6 +100,7 @@ public class ActivityServiceImpl implements ActivityService {
     }
 
     @Override
+    @Transactional
     public Result create(ActivityForm activityForm) {
         Result result = activityForm.checkForCreate();
         if (ErrorConstant.checkSuccess(result)){
