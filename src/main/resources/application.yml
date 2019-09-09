@@ -1,9 +1,9 @@
 mysql:
   datasource:
     username: root
-    password: root
+    password: root123456
     driverClassName: com.mysql.jdbc.Driver
-    url: jdbc:mysql://127.0.0.1:3306/count_votes?useUnicode=true&characterEncoding=utf-8
+    url: jdbc:mysql://47.98.128.180:3306/count_votes?useUnicode=true&characterEncoding=utf-8
     defaultAutoCommit: true
     maxActive: 20
     maxIdle: 20
